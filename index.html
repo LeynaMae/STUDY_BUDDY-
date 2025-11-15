@@ -2,86 +2,224 @@
 <html lang="en">
 <head>
   <meta charset="UTF-8" />
-  <title>Study Owl Math App</title>
+  <title>Study Buddy</title>
   <style>
+    :root {
+      --bg: #0f172a;
+      --bg-soft: #020617;
+      --card-bg: #020617;
+      --accent: #38bdf8;
+      --accent-soft: rgba(56, 189, 248, 0.12);
+      --accent-2: #a855f7;
+      --border-subtle: #1f2937;
+      --text-main: #e5e7eb;
+      --text-soft: #9ca3af;
+      --danger: #f97373;
+      --success: #4ade80;
+      --radius-lg: 18px;
+      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.9);
+    }
+
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
+        "Segoe UI", sans-serif;
     }
 
     body {
-      background: #f3f4f6;
-      padding: 20px;
-      color: #111827;
+      background: radial-gradient(circle at top, #1e293b 0, #020617 40%, #000 100%);
+      color: var(--text-main);
+      padding: 24px;
     }
 
-    h1, h2, h3 {
-      font-weight: 700;
-    }
-
-    .app-container {
-      max-width: 1100px;
+    .app {
+      max-width: 1200px;
       margin: 0 auto;
     }
+
+    /* HEADER */
 
     header {
       display: flex;
       align-items: center;
       justify-content: space-between;
-      margin-bottom: 20px;
+      gap: 16px;
+      margin-bottom: 24px;
+      padding: 16px 20px;
+      border-radius: 999px;
+      background: linear-gradient(90deg, rgba(56, 189, 248, 0.18), rgba(168, 85, 247, 0.22));
+      border: 1px solid rgba(148, 163, 184, 0.4);
+      backdrop-filter: blur(18px);
+      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.75);
+    }
+
+    .logo-row {
+      display: flex;
+      align-items: center;
+      gap: 14px;
+    }
+
+    .logo-circle {
+      width: 54px;
+      height: 54px;
+      border-radius: 999px;
+      background: radial-gradient(circle at 30% 20%, #e0f2fe 0, #0369a1 40%, #020617 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.9);
+      border: 2px solid rgba(248, 250, 252, 0.7);
+    }
+
+    .logo-circle span {
+      font-size: 2rem;
+    }
+
+    .app-title {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .app-title h1 {
+      font-size: 1.5rem;
+      font-weight: 700;
+      letter-spacing: 0.04em;
+    }
+
+    .app-title p {
+      font-size: 0.9rem;
+      color: #e5e7eb;
+    }
+
+    .header-points {
+      padding: 6px 12px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.6);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      display: flex;
+      align-items: center;
       gap: 10px;
+      font-size: 0.9rem;
     }
 
-    header h1 {
-      font-size: 1.8rem;
+    .header-points span:first-child {
+      font-size: 1.1rem;
     }
 
-    .tagline {
-      font-size: 0.95rem;
-      color: #6b7280;
+    .chip {
+      padding: 3px 9px;
+      border-radius: 999px;
+      font-size: 0.75rem;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.5);
     }
+
+    /* LAYOUT */
 
     .grid {
       display: grid;
-      grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
-      gap: 20px;
+      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr) minmax(0, 1fr);
+      gap: 18px;
+    }
+
+    @media (max-width: 960px) {
+      .grid {
+        grid-template-columns: 1fr;
+      }
+
+      header {
+        border-radius: 18px;
+        flex-direction: column;
+        align-items: flex-start;
+      }
+    }
+
+    .column {
+      display: flex;
+      flex-direction: column;
+      gap: 18px;
     }
 
     .card {
-      background: #ffffff;
-      border-radius: 16px;
-      padding: 18px 20px;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.08);
+      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 55%),
+        radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.16), transparent 55%),
+        var(--card-bg);
+      border-radius: var(--radius-lg);
+      padding: 16px 18px;
+      border: 1px solid var(--border-subtle);
+      box-shadow: var(--shadow-soft);
+      position: relative;
+      overflow: hidden;
     }
 
-    .card h2 {
-      font-size: 1.1rem;
+    .card::before {
+      content: "";
+      position: absolute;
+      inset: 0;
+      background: linear-gradient(
+        135deg,
+        rgba(148, 163, 184, 0.22),
+        transparent 20%,
+        transparent 80%,
+        rgba(148, 163, 184, 0.15)
+      );
+      opacity: 0.2;
+      pointer-events: none;
+    }
+
+    .card > * {
+      position: relative;
+      z-index: 1;
+    }
+
+    .card-header {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
       margin-bottom: 10px;
+    }
+
+    .card-title {
       display: flex;
       align-items: center;
       gap: 8px;
+      font-weight: 600;
+      font-size: 1rem;
     }
 
-    .pill {
+    .card-title span.icon {
+      font-size: 1.2rem;
+    }
+
+    .card-subtitle {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-bottom: 10px;
+    }
+
+    .tag {
+      padding: 3px 9px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+      font-size: 0.75rem;
+      color: var(--text-soft);
       display: inline-flex;
       align-items: center;
-      gap: 6px;
-      background: #e5f3ff;
-      color: #0369a1;
-      padding: 4px 10px;
-      border-radius: 999px;
-      font-size: 0.75rem;
-      font-weight: 600;
-      margin-top: 6px;
+      gap: 4px;
     }
 
-    .label {
-      font-size: 0.85rem;
-      color: #4b5563;
-      margin-bottom: 6px;
+    /* FORMS / INPUTS / BUTTONS */
+
+    label {
       display: block;
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-bottom: 4px;
     }
 
     input[type="number"],
@@ -90,109 +228,278 @@
     select {
       width: 100%;
       padding: 8px 10px;
-      margin-bottom: 10px;
-      border-radius: 10px;
-      border: 1px solid #d1d5db;
+      margin-bottom: 8px;
+      border-radius: 999px;
+      border: 1px solid rgba(55, 65, 81, 0.9);
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-main);
       font-size: 0.9rem;
       outline: none;
-      background: #f9fafb;
+      transition: border-color 0.15s ease, box-shadow 0.15s ease, background 0.15s ease;
+    }
+
+    textarea {
+      border-radius: 12px;
+      resize: vertical;
+      min-height: 80px;
     }
 
     input:focus,
     textarea:focus,
     select:focus {
-      border-color: #2563eb;
-      box-shadow: 0 0 0 1px rgba(37, 99, 235, 0.3);
-      background: #ffffff;
+      border-color: var(--accent);
+      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.45);
+      background: #020617;
     }
 
     button {
       border: none;
       border-radius: 999px;
-      padding: 8px 14px;
-      font-size: 0.9rem;
+      padding: 7px 13px;
+      font-size: 0.85rem;
       font-weight: 600;
       cursor: pointer;
       margin-right: 6px;
       margin-top: 4px;
+      transition: transform 0.08s ease, box-shadow 0.12s ease, background 0.12s ease,
+        border-color 0.12s ease;
+      display: inline-flex;
+      align-items: center;
+      gap: 5px;
+      white-space: nowrap;
+    }
+
+    button:active {
+      transform: translateY(1px) scale(0.99);
+      box-shadow: none;
     }
 
     .btn-primary {
-      background: #2563eb;
-      color: #ffffff;
+      background: linear-gradient(135deg, var(--accent), var(--accent-2));
+      color: #0b1120;
+      box-shadow: 0 7px 16px rgba(56, 189, 248, 0.4);
     }
 
     .btn-secondary {
-      background: #e5e7eb;
-      color: #111827;
+      background: rgba(15, 23, 42, 0.9);
+      color: var(--text-main);
+      border: 1px solid rgba(148, 163, 184, 0.6);
+    }
+
+    .btn-ghost {
+      background: transparent;
+      color: var(--text-soft);
+      border: 1px dashed rgba(148, 163, 184, 0.7);
     }
 
     .btn-small {
-      padding: 6px 10px;
-      font-size: 0.8rem;
+      padding: 5px 10px;
+      font-size: 0.78rem;
     }
 
-    .timer-display {
-      font-size: 1.4rem;
+    .btn-shop {
+      width: 100%;
+      justify-content: space-between;
+      margin-right: 0;
+      margin-top: 6px;
+    }
+
+    .pill {
+      border-radius: 999px;
+      padding: 2px 8px;
+      font-size: 0.7rem;
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(15, 23, 42, 0.85);
+      color: var(--text-soft);
+    }
+
+    /* TIMER */
+
+    .timer-value {
+      font-size: 1.6rem;
       font-weight: 700;
-      margin: 10px 0;
-      letter-spacing: 1px;
+      letter-spacing: 0.18em;
+      margin: 8px 0;
     }
 
-    .status-text {
-      font-size: 0.85rem;
-      color: #6b7280;
-      margin-top: 4px;
+    .timer-controls {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 8px;
+      align-items: center;
+    }
+
+    .timer-status {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+      margin-top: 6px;
       min-height: 18px;
     }
 
-    .points-display {
-      font-size: 1.3rem;
-      font-weight: 700;
+    .points-row {
+      margin-top: 10px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 8px;
+      font-size: 0.9rem;
+    }
+
+    .points-row strong {
+      font-size: 1.1rem;
+    }
+
+    .hint {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+      margin-top: 4px;
+    }
+
+    /* OWL PROFILE & PROGRESS */
+
+    .owl-header-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 10px;
       margin-bottom: 6px;
     }
 
-    .owl-wrapper {
+    .owl-figure {
       display: flex;
       align-items: center;
-      gap: 14px;
-      margin-bottom: 10px;
+      gap: 12px;
+      margin: 6px 0 8px 0;
     }
 
-    .owl-art {
-      font-size: 3rem;
+    .owl-icon {
+      width: 70px;
+      height: 70px;
+      border-radius: 24px;
+      background: radial-gradient(circle at 30% 20%, #e0f2fe 0, #0369a1 40%, #020617 100%);
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      font-size: 2.4rem;
+      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.95);
+      border: 2px solid rgba(248, 250, 252, 0.7);
+    }
+
+    .owl-meta {
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
     }
 
     .owl-level {
-      font-size: 0.9rem;
-      color: #4b5563;
+      font-size: 0.95rem;
+      font-weight: 600;
     }
 
-    .progress-bar {
+    .owl-xp {
+      font-size: 0.8rem;
+      color: var(--text-soft);
+    }
+
+    .progress-shell {
       width: 100%;
-      height: 10px;
+      height: 8px;
       border-radius: 999px;
-      background: #e5e7eb;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(51, 65, 85, 0.8);
       overflow: hidden;
       margin-top: 5px;
     }
 
-    .progress-fill {
+    .progress-bar {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, #38bdf8, #6366f1, #a855f7);
-      transition: width 0.3s ease;
+      background: linear-gradient(90deg, var(--accent), var(--accent-2));
+      box-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+      transition: width 0.25s ease;
     }
+
+    .accessory-tags {
+      display: flex;
+      flex-wrap: wrap;
+      gap: 6px;
+      margin-top: 6px;
+    }
+
+    .accessory-tag {
+      font-size: 0.75rem;
+      padding: 2px 7px;
+      border-radius: 999px;
+      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid rgba(148, 163, 184, 0.7);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    /* SHOP */
+
+    .shop-list {
+      margin-top: 4px;
+    }
+
+    .shop-item {
+      padding: 6px 0;
+      border-bottom: 1px dashed rgba(51, 65, 85, 0.9);
+    }
+
+    .shop-item:last-child {
+      border-bottom: none;
+    }
+
+    .shop-label {
+      font-size: 0.87rem;
+      display: flex;
+      flex-direction: column;
+      gap: 2px;
+    }
+
+    .shop-meta-row {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 6px;
+      margin-top: 4px;
+    }
+
+    .shop-cost {
+      font-size: 0.8rem;
+      color: var(--accent);
+      display: inline-flex;
+      align-items: center;
+      gap: 4px;
+    }
+
+    .shop-status {
+      font-size: 0.75rem;
+      color: var(--text-soft);
+    }
+
+    .shop-status.owned {
+      color: var(--success);
+    }
+
+    .shop-status.equipped {
+      color: var(--accent-2);
+    }
+
+    /* TIPS */
 
     .tips-list {
       list-style: none;
-      font-size: 0.9rem;
-      color: #374151;
+      font-size: 0.88rem;
+      color: var(--text-soft);
+      margin-top: 4px;
     }
 
     .tips-list li {
-      margin-bottom: 8px;
-      padding-left: 18px;
+      margin-bottom: 6px;
+      padding-left: 16px;
       position: relative;
     }
 
@@ -201,200 +508,409 @@
       position: absolute;
       left: 0;
       top: 0;
-      color: #6366f1;
-      font-size: 0.75rem;
-      margin-top: 2px;
+      font-size: 0.7rem;
+      color: var(--accent-2);
+      margin-top: 3px;
     }
 
-    .quiz-question-preview {
-      font-size: 0.85rem;
-      color: #4b5563;
-      margin-top: 6px;
-      max-height: 80px;
+    /* QUIZ */
+
+    .quiz-builder {
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
+      margin-bottom: 8px;
+    }
+
+    .quiz-preview {
+      max-height: 110px;
       overflow-y: auto;
-      border-top: 1px dashed #e5e7eb;
-      padding-top: 6px;
+      padding: 6px 10px;
+      border-radius: 12px;
+      background: rgba(15, 23, 42, 0.85);
+      border: 1px dashed rgba(51, 65, 85, 0.9);
+      font-size: 0.8rem;
+      color: var(--text-soft);
     }
 
-    .quiz-question-preview p {
+    .quiz-preview p {
       margin-bottom: 4px;
     }
 
-    .quiz-area {
+    .quiz-runner {
       margin-top: 10px;
-      border-top: 1px solid #e5e7eb;
       padding-top: 8px;
+      border-top: 1px solid rgba(31, 41, 55, 0.9);
     }
 
-    .quiz-question-text {
+    .quiz-question {
+      font-size: 0.95rem;
       font-weight: 600;
       margin-bottom: 6px;
     }
 
     .quiz-options {
       list-style: none;
-      font-size: 0.9rem;
       margin-bottom: 6px;
-    }
-
-    .quiz-options li {
-      margin-bottom: 4px;
+      display: flex;
+      flex-direction: column;
+      gap: 4px;
     }
 
     .quiz-result {
-      font-size: 0.9rem;
+      font-size: 0.83rem;
       margin-top: 4px;
       min-height: 18px;
     }
 
-    .pill-level {
-      font-size: 0.75rem;
-      padding: 2px 8px;
-      border-radius: 999px;
-      background: #eef2ff;
-      color: #4f46e5;
-      display: inline-block;
-      margin-top: 2px;
+    .quiz-result.correct {
+      color: var(--success);
+    }
+
+    .quiz-result.wrong {
+      color: var(--danger);
     }
 
     footer {
-      margin-top: 25px;
-      font-size: 0.8rem;
-      color: #9ca3af;
       text-align: center;
+      margin-top: 22px;
+      font-size: 0.78rem;
+      color: var(--text-soft);
     }
   </style>
 </head>
 <body>
-  <div class="app-container">
+  <div class="app">
     <header>
-      <div>
-        <h1>Study Owl · Math Lab</h1>
-        <p class="tagline">Earn points by studying, level up your owl, and build your own math quizzes.</p>
+      <div class="logo-row">
+        <div class="logo-circle">
+          <span>🦉🎓</span>
+        </div>
+        <div class="app-title">
+          <h1>Study Buddy</h1>
+          <p>Your math study partner — focus, level up your owl, and earn rewards.</p>
+        </div>
       </div>
-      <div class="pill">
-        <span>🦉</span>
-        <span>Focus • Practice • Level Up</span>
+      <div class="header-points">
+        <span>⭐</span>
+        <span>Total Points: <strong id="headerPoints">0</strong></span>
+        <span class="chip" id="headerLevelChip">Level 1 · New Student</span>
       </div>
     </header>
 
     <div class="grid">
-      <!-- STUDY TIMER + POINTS -->
-      <section class="card">
-        <h2>⏱ Study Timer & Points</h2>
-        <label class="label" for="minutesInput">How many minutes do you want to study?</label>
-        <input type="number" id="minutesInput" min="1" max="180" value="25" />
+      <!-- LEFT COLUMN: TIMER + TIPS -->
+      <div class="column">
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">
+                <span class="icon">⏱</span>
+                <span>Study Timer</span>
+              </div>
+              <p class="card-subtitle">Pick a focus block, press start, and earn points when you finish.</p>
+            </div>
+            <span class="tag">10 points / 10 min</span>
+          </div>
 
-        <button class="btn-primary" id="startTimerBtn">Start Session</button>
-        <button class="btn-secondary btn-small" id="resetTimerBtn">Reset</button>
+          <label for="minutesInput">Study minutes</label>
+          <input type="number" id="minutesInput" min="1" max="180" value="25" />
 
-        <div class="timer-display" id="timerDisplay">25:00</div>
-        <div class="status-text" id="timerStatus">Set your time and press “Start Session”.</div>
+          <div class="timer-value" id="timerDisplay">25:00</div>
 
-        <hr style="border:none;border-top:1px solid #e5e7eb;margin:12px 0;" />
+          <div class="timer-controls">
+            <button class="btn-primary" id="startTimerBtn">Start Session</button>
+            <button class="btn-secondary btn-small" id="pauseTimerBtn">Pause</button>
+            <button class="btn-ghost btn-small" id="resetTimerBtn">Reset</button>
+          </div>
 
-        <div class="points-display">
-          Points: <span id="pointsValue">0</span>
-        </div>
-        <div class="owl-wrapper">
-          <div class="owl-art" id="owlEmoji">🦉</div>
-          <div>
-            <div class="owl-level" id="owlLevelText">Level 1 · Sleepy Student Owl</div>
-            <span class="pill-level" id="nextLevelText">Next level at 50 pts</span>
-            <div class="progress-bar">
-              <div class="progress-fill" id="pointsProgress"></div>
+          <div class="timer-status" id="timerStatus">
+            Choose a time and hit <strong>Start Session</strong>.
+          </div>
+
+          <div class="points-row">
+            <div>
+              Points this session (estimate): <strong id="sessionPointsPreview">20</strong>
+            </div>
+            <div class="pill">10 pts / 10 minutes (rounded)</div>
+          </div>
+          <p class="hint">
+            Stay focused until the timer ends to collect points automatically.
+          </p>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">
+                <span class="icon">📐</span>
+                <span>Math Study Help</span>
+              </div>
+              <p class="card-subtitle">Use these methods while your timer runs for better results.</p>
+            </div>
+            <span class="tag">Tips • Techniques</span>
+          </div>
+
+          <ul class="tips-list">
+            <li><strong>Example → Copy → Create:</strong> Copy a solved example, then change the numbers and solve your own version.</li>
+            <li><strong>Explain to your owl:</strong> Say out loud each step as if you are teaching your Study Buddy owl.</li>
+            <li><strong>3 easy • 2 medium • 1 hard:</strong> In every block, mix difficulty so your brain stays awake.</li>
+            <li><strong>Formula sprint:</strong> At the start, write all formulas you need from memory, then check them.</li>
+            <li><strong>Why, not just what:</strong> For each step, ask “why can I do this?” (e.g. “because I added the same to both sides”).</li>
+            <li><strong>Math diary:</strong> At the end of the session, write one thing that finally made sense today.</li>
+          </ul>
+        </section>
+      </div>
+
+      <!-- MIDDLE COLUMN: QUIZ MAKER -->
+      <div class="column">
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">
+                <span class="icon">📝</span>
+                <span>Quiz Maker</span>
+              </div>
+              <p class="card-subtitle">Create your own math questions and test yourself.</p>
+            </div>
+            <span class="tag">Custom practice</span>
+          </div>
+
+          <div class="quiz-builder">
+            <label for="quizQuestionInput">Question</label>
+            <input
+              type="text"
+              id="quizQuestionInput"
+              placeholder="e.g. What is 7 × 6?"
+            />
+
+            <label>Options</label>
+            <input type="text" id="optA" placeholder="Option A" />
+            <input type="text" id="optB" placeholder="Option B" />
+            <input type="text" id="optC" placeholder="Option C" />
+            <input type="text" id="optD" placeholder="Option D" />
+
+            <label for="correctOptionSelect">Correct answer</label>
+            <select id="correctOptionSelect">
+              <option value="A">A</option>
+              <option value="B">B</option>
+              <option value="C">C</option>
+              <option value="D">D</option>
+            </select>
+
+            <div>
+              <button class="btn-primary btn-small" id="addQuestionBtn">
+                ➕ Add Question
+              </button>
+              <button class="btn-ghost btn-small" id="clearQuestionsBtn">
+                🧹 Clear All
+              </button>
             </div>
           </div>
-        </div>
-        <p class="status-text">
-          You earn <strong>10 points</strong> for every <strong>10 minutes</strong> studied.
-        </p>
-      </section>
 
-      <!-- STUDY HELP METHODS -->
-      <section class="card">
-        <h2>📐 Math Study Help</h2>
-        <p class="label">Use these methods while your timer runs:</p>
-        <ul class="tips-list">
-          <li><strong>Example → Practice → Check:</strong> Copy one example from your notes, then solve a similar problem without looking.</li>
-          <li><strong>Explain it out loud:</strong> Pretend you are teaching the owl. If you can explain it simply, you understand it.</li>
-          <li><strong>Change the numbers:</strong> Take a homework problem and swap the numbers to create 3 new practice problems.</li>
-          <li><strong>Error hunt:</strong> Solve a problem, then go back and look for possible mistakes step by step.</li>
-          <li><strong>Mix topics:</strong> In one session, do 2–3 problems from different units (fractions, equations, geometry) to keep your brain active.</li>
-          <li><strong>Quick formula sheet:</strong> At the start of each study block, rewrite key formulas from memory, then check them.</li>
-        </ul>
-      </section>
+          <div class="quiz-preview" id="quizPreview">
+            No questions yet. Add one above to start your quiz bank.
+          </div>
 
-      <!-- QUIZ MAKER -->
-      <section class="card">
-        <h2>📝 Quiz Maker</h2>
-        <p class="label">Create your own math questions, then test yourself.</p>
+          <div class="quiz-runner" id="quizRunner" style="display:none;">
+            <div class="quiz-question" id="currentQuizQuestion"></div>
+            <ul class="quiz-options" id="quizOptionsList"></ul>
+            <button class="btn-secondary btn-small" id="nextQuestionBtn">
+              Next Question
+            </button>
+            <div class="quiz-result" id="quizResult"></div>
+          </div>
 
-        <label class="label" for="quizQuestionInput">Question</label>
-        <input type="text" id="quizQuestionInput" placeholder="e.g. What is 3 × 7?" />
+          <div style="margin-top:8px;">
+            <button class="btn-primary btn-small" id="startQuizBtn">
+              ▶ Start Quiz
+            </button>
+          </div>
 
-        <label class="label">Options</label>
-        <input type="text" id="optA" placeholder="Option A" />
-        <input type="text" id="optB" placeholder="Option B" />
-        <input type="text" id="optC" placeholder="Option C" />
-        <input type="text" id="optD" placeholder="Option D" />
+          <p class="hint" style="margin-top:6px;">
+            Idea: turn your homework problems into quiz questions and see what you remember tomorrow.
+          </p>
+        </section>
+      </div>
 
-        <label class="label" for="correctOptionSelect">Correct answer</label>
-        <select id="correctOptionSelect">
-          <option value="A">A</option>
-          <option value="B">B</option>
-          <option value="C">C</option>
-          <option value="D">D</option>
-        </select>
+      <!-- RIGHT COLUMN: OWL + SHOP -->
+      <div class="column">
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">
+                <span class="icon">🦉</span>
+                <span>Your Study Buddy</span>
+              </div>
+              <p class="card-subtitle">Level up your owl and equip cool accessories.</p>
+            </div>
+            <span class="tag" id="pointsTag">Points: 0</span>
+          </div>
 
-        <button class="btn-primary" id="addQuestionBtn">Add Question</button>
-        <button class="btn-secondary btn-small" id="clearQuestionsBtn">Clear All</button>
+          <div class="owl-header-row">
+            <div>
+              <div class="owl-figure">
+                <div class="owl-icon" id="owlIcon">🦉🎓</div>
+                <div class="owl-meta">
+                  <div class="owl-level" id="owlLevelText">Level 1 · New Student</div>
+                  <div class="owl-xp" id="owlXpText">0 / 50 points to next level</div>
+                </div>
+              </div>
+            </div>
+          </div>
 
-        <div class="quiz-question-preview" id="quizPreview">
-          No questions yet. Add one above to start your quiz bank.
-        </div>
+          <div class="progress-shell">
+            <div class="progress-bar" id="levelProgress"></div>
+          </div>
 
-        <div class="quiz-area" id="quizArea" style="display:none;">
-          <div class="quiz-question-text" id="currentQuizQuestion"></div>
-          <ul class="quiz-options" id="quizOptionsList"></ul>
-          <button class="btn-primary btn-small" id="nextQuestionBtn">Next Question</button>
-          <p class="quiz-result" id="quizResult"></p>
-        </div>
+          <div class="accessory-tags" id="equippedAccessories">
+            <!-- Filled by JS -->
+          </div>
 
-        <button class="btn-primary btn-small" id="startQuizBtn" style="margin-top:8px;">Start Quiz</button>
-      </section>
+          <p class="hint">
+            Earn points with the timer, then visit the shop to buy accessories for your owl.
+          </p>
+        </section>
+
+        <section class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">
+                <span class="icon">🛒</span>
+                <span>Owl Accessory Shop</span>
+              </div>
+              <p class="card-subtitle">Spend your points on upgrades and style.</p>
+            </div>
+            <span class="tag">Cosmetics only · Keep your points safe</span>
+          </div>
+
+          <div class="shop-list" id="shopList">
+            <!-- Shop items from JS -->
+          </div>
+
+          <p class="hint">
+            Tip: Save up for a big item, or collect lots of smaller ones and swap styles whenever you like.
+          </p>
+        </section>
+      </div>
     </div>
 
     <footer>
-      Study Owl Math App · Practice a little every day 🦉
+      Study Buddy · Practice a little every day · Your owl believes in you 🦉🎓
     </footer>
   </div>
 
   <script>
-    // ----------------------------
-    // TIMER + POINTS + OWL LOGIC
-    // ----------------------------
-    const minutesInput = document.getElementById("minutesInput");
-    const timerDisplay = document.getElementById("timerDisplay");
-    const timerStatus = document.getElementById("timerStatus");
-    const startTimerBtn = document.getElementById("startTimerBtn");
-    const resetTimerBtn = document.getElementById("resetTimerBtn");
-    const pointsValue = document.getElementById("pointsValue");
-    const owlEmoji = document.getElementById("owlEmoji");
-    const owlLevelText = document.getElementById("owlLevelText");
-    const nextLevelText = document.getElementById("nextLevelText");
-    const pointsProgress = document.getElementById("pointsProgress");
-
+    /* ----------------------
+       GLOBAL STATE
+    ---------------------- */
+    let totalPoints = 0;
     let timerInterval = null;
     let remainingSeconds = 0;
-    let totalPoints = 0;
     let isRunning = false;
+    let currentSessionMinutes = 25;
 
-    function updateTimerDisplay(seconds) {
+    const accessories = [
+      {
+        id: "glasses",
+        name: "Smart Glasses",
+        emoji: "🕶️",
+        cost: 40,
+        owned: false,
+        equipped: false,
+        description: "Your owl looks extra clever for algebra."
+      },
+      {
+        id: "cape",
+        name: "Superhero Cape",
+        emoji: "🦸‍♂️",
+        cost: 70,
+        owned: false,
+        equipped: false,
+        description: "Perfect for saving your test scores."
+      },
+      {
+        id: "sparkles",
+        name: "Sparkle Aura",
+        emoji: "✨",
+        cost: 90,
+        owned: false,
+        equipped: false,
+        description: "Because math magic is real."
+      },
+      {
+        id: "star",
+        name: "Gold Star Badge",
+        emoji: "🌟",
+        cost: 120,
+        owned: false,
+        equipped: false,
+        description: "Shows you crush problem sets."
+      }
+    ];
+
+    const quizQuestions = [];
+    let quizIndex = 0;
+    let quizScore = 0;
+    let quizActive = false;
+
+    /* ----------------------
+       DOM HELPERS
+    ---------------------- */
+    const $ = (id) => document.getElementById(id);
+
+    const minutesInput = $("minutesInput");
+    const timerDisplay = $("timerDisplay");
+    const timerStatus = $("timerStatus");
+    const startTimerBtn = $("startTimerBtn");
+    const pauseTimerBtn = $("pauseTimerBtn");
+    const resetTimerBtn = $("resetTimerBtn");
+    const sessionPointsPreview = $("sessionPointsPreview");
+
+    const headerPoints = $("headerPoints");
+    const headerLevelChip = $("headerLevelChip");
+    const pointsTag = $("pointsTag");
+    const owlIcon = $("owlIcon");
+    const owlLevelText = $("owlLevelText");
+    const owlXpText = $("owlXpText");
+    const levelProgress = $("levelProgress");
+    const equippedAccessories = $("equippedAccessories");
+    const shopList = $("shopList");
+
+    const quizQuestionInput = $("quizQuestionInput");
+    const optA = $("optA");
+    const optB = $("optB");
+    const optC = $("optC");
+    const optD = $("optD");
+    const correctOptionSelect = $("correctOptionSelect");
+    const addQuestionBtn = $("addQuestionBtn");
+    const clearQuestionsBtn = $("clearQuestionsBtn");
+    const quizPreview = $("quizPreview");
+    const quizRunner = $("quizRunner");
+    const currentQuizQuestion = $("currentQuizQuestion");
+    const quizOptionsList = $("quizOptionsList");
+    const quizResult = $("quizResult");
+    const startQuizBtn = $("startQuizBtn");
+    const nextQuestionBtn = $("nextQuestionBtn");
+
+    /* ----------------------
+       TIMER LOGIC
+    ---------------------- */
+    function formatTime(seconds) {
       const m = Math.floor(seconds / 60);
       const s = seconds % 60;
-      timerDisplay.textContent =
-        String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+      return String(m).padStart(2, "0") + ":" + String(s).padStart(2, "0");
+    }
+
+    function updateTimerDisplay() {
+      timerDisplay.textContent = formatTime(remainingSeconds);
+    }
+
+    function calculateSessionPointsEstimate() {
+      const minutes = parseInt(minutesInput.value, 10) || 0;
+      const blocksOfTen = Math.round(minutes / 10);
+      const estimate = blocksOfTen * 10;
+      sessionPointsPreview.textContent = estimate;
     }
 
     function startTimer() {
@@ -406,135 +922,246 @@
         return;
       }
 
+      currentSessionMinutes = minutes;
       remainingSeconds = minutes * 60;
-      updateTimerDisplay(remainingSeconds);
-      timerStatus.textContent = "Studying... stay focused!";
+      updateTimerDisplay();
+      timerStatus.textContent = "Studying... stay focused! 📚";
       isRunning = true;
+
       startTimerBtn.textContent = "Running...";
       startTimerBtn.disabled = true;
+      pauseTimerBtn.disabled = false;
 
       timerInterval = setInterval(() => {
         remainingSeconds--;
-        updateTimerDisplay(remainingSeconds);
-
+        updateTimerDisplay();
         if (remainingSeconds <= 0) {
           clearInterval(timerInterval);
           isRunning = false;
           startTimerBtn.textContent = "Start Session";
           startTimerBtn.disabled = false;
-          timerStatus.textContent = "Nice work! Your session is complete. Points added.";
-
-          awardPoints(minutes);
+          pauseTimerBtn.disabled = true;
+          remainingSeconds = 0;
+          updateTimerDisplay();
+          const earned = awardPointsForSession(currentSessionMinutes);
+          timerStatus.textContent =
+            "Nice work! Session complete. You earned +" + earned + " points. 🎉";
         }
       }, 1000);
+    }
+
+    function pauseTimer() {
+      if (!isRunning) return;
+      clearInterval(timerInterval);
+      isRunning = false;
+      startTimerBtn.textContent = "Resume";
+      startTimerBtn.disabled = false;
+      pauseTimerBtn.disabled = true;
+      timerStatus.textContent = "Paused. Take a short break, then resume.";
     }
 
     function resetTimer() {
       clearInterval(timerInterval);
       isRunning = false;
-      startTimerBtn.textContent = "Start Session";
-      startTimerBtn.disabled = false;
       const minutes = parseInt(minutesInput.value, 10) || 25;
       remainingSeconds = minutes * 60;
-      updateTimerDisplay(remainingSeconds);
+      updateTimerDisplay();
+      startTimerBtn.textContent = "Start Session";
+      startTimerBtn.disabled = false;
+      pauseTimerBtn.disabled = false;
       timerStatus.textContent = "Timer reset. Ready when you are.";
+      calculateSessionPointsEstimate();
     }
 
-    function awardPoints(minutesStudied) {
-      // 10 points for each 10 minutes (rounded)
+    function awardPointsForSession(minutesStudied) {
       const blocksOfTen = Math.round(minutesStudied / 10);
-      const pointsEarned = blocksOfTen * 10;
-      totalPoints += pointsEarned;
-      if (pointsEarned > 0) {
-        timerStatus.textContent += ` (+${pointsEarned} pts)`;
+      const earned = blocksOfTen * 10;
+      if (earned > 0) {
+        totalPoints += earned;
+        updatePointsUI();
       }
-      updatePointsUI();
+      return earned;
+    }
+
+    minutesInput.addEventListener("input", () => {
+      calculateSessionPointsEstimate();
+      const minutes = parseInt(minutesInput.value, 10) || 0;
+      remainingSeconds = minutes * 60;
+      updateTimerDisplay();
+    });
+
+    startTimerBtn.addEventListener("click", startTimer);
+    pauseTimerBtn.addEventListener("click", pauseTimer);
+    resetTimerBtn.addEventListener("click", resetTimer);
+
+    /* ----------------------
+       POINTS + LEVELS + OWL
+    ---------------------- */
+    function getLevelInfo(points) {
+      if (points >= 250) {
+        return {
+          level: 4,
+          name: "Legendary Math Sage",
+          floor: 250,
+          cap: 350,
+          nextLabel: "Max level (for now!)"
+        };
+      } else if (points >= 150) {
+        return {
+          level: 3,
+          name: "Algebra Master",
+          floor: 150,
+          cap: 250,
+          nextLabel: `${250 - points} points to Level 4`
+        };
+      } else if (points >= 50) {
+        return {
+          level: 2,
+          name: "Geometry Pro",
+          floor: 50,
+          cap: 150,
+          nextLabel: `${150 - points} points to Level 3`
+        };
+      } else {
+        return {
+          level: 1,
+          name: "New Student",
+          floor: 0,
+          cap: 50,
+          nextLabel: `${50 - points} points to Level 2`
+        };
+      }
+    }
+
+    function updateOwlIcon() {
+      const baseOwl = "🦉🎓";
+      const equipped = accessories.filter((a) => a.equipped);
+      const extra = equipped.map((a) => a.emoji).join(" ");
+      owlIcon.textContent = extra ? baseOwl + " " + extra : baseOwl;
+    }
+
+    function updateEquippedAccessoryTags() {
+      equippedAccessories.innerHTML = "";
+      const equipped = accessories.filter((a) => a.equipped);
+      if (equipped.length === 0) {
+        const span = document.createElement("span");
+        span.className = "accessory-tag";
+        span.textContent = "No accessories equipped yet.";
+        equippedAccessories.appendChild(span);
+        return;
+      }
+      equipped.forEach((a) => {
+        const span = document.createElement("span");
+        span.className = "accessory-tag";
+        span.innerHTML = `${a.emoji} ${a.name}`;
+        equippedAccessories.appendChild(span);
+      });
     }
 
     function updatePointsUI() {
-      pointsValue.textContent = totalPoints;
+      headerPoints.textContent = totalPoints;
+      pointsTag.textContent = "Points: " + totalPoints;
 
-      let level = 1;
-      let levelName = "Sleepy Student Owl";
-      let emoji = "🦉";
-      let nextAt = 50;
-      let currentLevelFloor = 0;
-      let nextLevelCap = 100;
+      const levelInfo = getLevelInfo(totalPoints);
+      headerLevelChip.textContent = `Level ${levelInfo.level} · ${levelInfo.name}`;
+      owlLevelText.textContent = `Level ${levelInfo.level} · ${levelInfo.name}`;
+      owlXpText.textContent = `${totalPoints - levelInfo.floor} / ${
+        levelInfo.cap - levelInfo.floor
+      } points to next level (${levelInfo.nextLabel})`;
 
-      if (totalPoints >= 200) {
-        level = 4;
-        levelName = "Legendary Math Sage Owl";
-        emoji = "🌌🦉";
-        currentLevelFloor = 200;
-        nextLevelCap = 300;
-        nextAt = "Maxed out (for now!)";
-      } else if (totalPoints >= 120) {
-        level = 3;
-        levelName = "Advanced Algebra Owl";
-        emoji = "📚🦉";
-        currentLevelFloor = 120;
-        nextLevelCap = 200;
-        nextAt = `${200 - totalPoints} pts to Level 4`;
-      } else if (totalPoints >= 50) {
-        level = 2;
-        levelName = "Focused Geometry Owl";
-        emoji = "📐🦉";
-        currentLevelFloor = 50;
-        nextLevelCap = 120;
-        nextAt = `${120 - totalPoints} pts to Level 3`;
-      } else {
-        level = 1;
-        levelName = "Sleepy Student Owl";
-        emoji = "🦉";
-        currentLevelFloor = 0;
-        nextLevelCap = 50;
-        nextAt = `${50 - totalPoints} pts to Level 2`;
-      }
+      const range = levelInfo.cap - levelInfo.floor;
+      const progress = range > 0 ? ((totalPoints - levelInfo.floor) / range) * 100 : 100;
+      levelProgress.style.width = Math.min(100, Math.max(0, progress)) + "%";
 
-      owlEmoji.textContent = emoji;
-      owlLevelText.textContent = `Level ${level} · ${levelName}`;
-      nextLevelText.textContent = typeof nextAt === "string" ? nextAt : `Next level at ${nextAt}`;
-
-      const range = nextLevelCap - currentLevelFloor;
-      const progress = range > 0 ? ((totalPoints - currentLevelFloor) / range) * 100 : 100;
-      pointsProgress.style.width = Math.max(0, Math.min(100, progress)) + "%";
+      renderShop();
+      updateOwlIcon();
+      updateEquippedAccessoryTags();
     }
 
-    startTimerBtn.addEventListener("click", startTimer);
-    resetTimerBtn.addEventListener("click", resetTimer);
+    /* ----------------------
+       SHOP LOGIC
+    ---------------------- */
+    function toggleAccessory(id) {
+      const item = accessories.find((a) => a.id === id);
+      if (!item) return;
 
-    // Initialize timer display
-    resetTimer();
+      if (!item.owned) {
+        // Try to buy
+        if (totalPoints < item.cost) {
+          alert("Not enough points for this accessory yet. Keep studying!");
+          return;
+        }
+        if (!confirm(`Buy "${item.name}" for ${item.cost} points?`)) {
+          return;
+        }
+        totalPoints -= item.cost;
+        item.owned = true;
+        item.equipped = true;
+      } else {
+        // Already owned -> toggle equipped
+        item.equipped = !item.equipped;
+      }
 
+      updatePointsUI();
+    }
 
-    // ----------------------------
-    // QUIZ MAKER LOGIC
-    // ----------------------------
-    const quizQuestionInput = document.getElementById("quizQuestionInput");
-    const optA = document.getElementById("optA");
-    const optB = document.getElementById("optB");
-    const optC = document.getElementById("optC");
-    const optD = document.getElementById("optD");
-    const correctOptionSelect = document.getElementById("correctOptionSelect");
-    const addQuestionBtn = document.getElementById("addQuestionBtn");
-    const clearQuestionsBtn = document.getElementById("clearQuestionsBtn");
-    const quizPreview = document.getElementById("quizPreview");
-    const quizArea = document.getElementById("quizArea");
-    const currentQuizQuestion = document.getElementById("currentQuizQuestion");
-    const quizOptionsList = document.getElementById("quizOptionsList");
-    const quizResult = document.getElementById("quizResult");
-    const startQuizBtn = document.getElementById("startQuizBtn");
-    const nextQuestionBtn = document.getElementById("nextQuestionBtn");
+    function renderShop() {
+      shopList.innerHTML = "";
+      accessories.forEach((item) => {
+        const div = document.createElement("div");
+        div.className = "shop-item";
 
-    let quizQuestions = [];
-    let currentQuestionIndex = 0;
-    let score = 0;
-    let quizStarted = false;
+        const labelDiv = document.createElement("div");
+        labelDiv.className = "shop-label";
+        labelDiv.innerHTML = `<span>${item.emoji} ${item.name}</span><span class="hint">${item.description}</span>`;
 
-    function refreshPreview() {
+        const metaRow = document.createElement("div");
+        metaRow.className = "shop-meta-row";
+
+        const costSpan = document.createElement("span");
+        costSpan.className = "shop-cost";
+        costSpan.innerHTML = `⭐ ${item.cost} pts`;
+
+        const statusSpan = document.createElement("span");
+        statusSpan.className = "shop-status";
+        if (item.equipped) {
+          statusSpan.classList.add("equipped");
+          statusSpan.textContent = "Equipped";
+        } else if (item.owned) {
+          statusSpan.classList.add("owned");
+          statusSpan.textContent = "Owned";
+        } else {
+          statusSpan.textContent = "Locked";
+        }
+
+        const btn = document.createElement("button");
+        btn.className = "btn-secondary btn-small btn-shop";
+        if (!item.owned) {
+          btn.innerHTML = `Buy & Equip <span>➜</span>`;
+        } else {
+          btn.innerHTML = item.equipped ? `Unequip` : `Equip`;
+        }
+        btn.addEventListener("click", () => toggleAccessory(item.id));
+
+        metaRow.appendChild(costSpan);
+        metaRow.appendChild(statusSpan);
+
+        div.appendChild(labelDiv);
+        div.appendChild(metaRow);
+        div.appendChild(btn);
+
+        shopList.appendChild(div);
+      });
+    }
+
+    /* ----------------------
+       QUIZ MAKER LOGIC
+    ---------------------- */
+    function refreshQuizPreview() {
       if (quizQuestions.length === 0) {
-        quizPreview.textContent = "No questions yet. Add one above to start your quiz bank.";
-        quizArea.style.display = "none";
+        quizPreview.textContent =
+          "No questions yet. Add one above to start your quiz bank.";
+        quizRunner.style.display = "none";
         return;
       }
 
@@ -572,16 +1199,16 @@
       optD.value = "";
       correctOptionSelect.value = "A";
 
-      refreshPreview();
+      refreshQuizPreview();
     }
 
     function clearQuestions() {
       if (!confirm("Clear all quiz questions?")) return;
-      quizQuestions = [];
-      refreshPreview();
-      quizArea.style.display = "none";
+      quizQuestions.length = 0;
+      quizRunner.style.display = "none";
       quizResult.textContent = "";
-      quizStarted = false;
+      quizActive = false;
+      refreshQuizPreview();
     }
 
     function startQuiz() {
@@ -589,52 +1216,56 @@
         alert("Add at least one question before starting the quiz.");
         return;
       }
-      quizArea.style.display = "block";
-      currentQuestionIndex = 0;
-      score = 0;
-      quizStarted = true;
+      quizRunner.style.display = "block";
+      quizIndex = 0;
+      quizScore = 0;
+      quizActive = true;
       quizResult.textContent = "";
-      showQuestion();
+      showQuizQuestion();
     }
 
-    function showQuestion() {
-      const q = quizQuestions[currentQuestionIndex];
-      currentQuizQuestion.textContent = `${currentQuestionIndex + 1}. ${q.question}`;
+    function showQuizQuestion() {
+      const q = quizQuestions[quizIndex];
+      currentQuizQuestion.textContent = `${quizIndex + 1}. ${q.question}`;
       quizOptionsList.innerHTML = "";
 
-      ["A", "B", "C", "D"].forEach(letter => {
+      ["A", "B", "C", "D"].forEach((letter) => {
         const li = document.createElement("li");
         const btn = document.createElement("button");
-        btn.textContent = `${letter}: ${q.options[letter]}`;
         btn.className = "btn-secondary btn-small";
+        btn.textContent = `${letter}: ${q.options[letter]}`;
         btn.addEventListener("click", () => selectAnswer(letter));
         li.appendChild(btn);
         quizOptionsList.appendChild(li);
       });
 
       quizResult.textContent = "";
+      quizResult.className = "quiz-result";
     }
 
-    function selectAnswer(letter) {
-      const q = quizQuestions[currentQuestionIndex];
-      if (letter === q.correct) {
-        quizResult.textContent = "✅ Correct!";
-        score++;
+    function selectAnswer(choice) {
+      const q = quizQuestions[quizIndex];
+      if (choice === q.correct) {
+        quizResult.textContent = "✅ Correct! Nice job.";
+        quizResult.className = "quiz-result correct";
+        quizScore++;
       } else {
         quizResult.textContent = `❌ Not quite. Correct answer: ${q.correct}`;
+        quizResult.className = "quiz-result wrong";
       }
     }
 
     function nextQuestion() {
-      if (!quizStarted) return;
-      currentQuestionIndex++;
-      if (currentQuestionIndex >= quizQuestions.length) {
-        quizStarted = false;
+      if (!quizActive) return;
+      quizIndex++;
+      if (quizIndex >= quizQuestions.length) {
+        quizActive = false;
         quizOptionsList.innerHTML = "";
         currentQuizQuestion.textContent = "Quiz finished!";
-        quizResult.textContent = `You scored ${score} out of ${quizQuestions.length}.`;
+        quizResult.className = "quiz-result correct";
+        quizResult.textContent = `You scored ${quizScore} out of ${quizQuestions.length}.`;
       } else {
-        showQuestion();
+        showQuizQuestion();
       }
     }
 
@@ -643,7 +1274,19 @@
     startQuizBtn.addEventListener("click", startQuiz);
     nextQuestionBtn.addEventListener("click", nextQuestion);
 
-    refreshPreview();
+    /* ----------------------
+       INITIAL SETUP
+    ---------------------- */
+    function init() {
+      calculateSessionPointsEstimate();
+      const minutes = parseInt(minutesInput.value, 10) || 25;
+      remainingSeconds = minutes * 60;
+      updateTimerDisplay();
+      renderShop();
+      updateEquippedAccessoryTags();
+    }
+
+    init();
   </script>
 </body>
 </html>
