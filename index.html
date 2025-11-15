@@ -5,37 +5,36 @@
   <title>Study Buddy</title>
   <style>
     :root {
-      --bg: #0f172a;
-      --bg-soft: #020617;
-      --card-bg: #020617;
-      --accent: #38bdf8;
-      --accent-soft: rgba(56, 189, 248, 0.12);
-      --accent-2: #a855f7;
-      --border-subtle: #1f2937;
-      --text-main: #e5e7eb;
-      --text-soft: #9ca3af;
-      --danger: #f97373;
-      --success: #4ade80;
+      --bg: #f7f1e7;
+      --bg-soft: #fdfaf5;
+      --card-bg: #ffffff;
+      --accent: #c9885b;
+      --accent-soft: #f2dfcf;
+      --accent-2: #8a5a3b;
+      --border-subtle: #e1d4c5;
+      --text-main: #3f342a;
+      --text-soft: #7d6a57;
+      --danger: #c4554a;
+      --success: #4c8f5b;
       --radius-lg: 18px;
-      --shadow-soft: 0 18px 40px rgba(15, 23, 42, 0.9);
+      --shadow-soft: 0 10px 26px rgba(105, 78, 49, 0.15);
     }
 
     * {
       box-sizing: border-box;
       margin: 0;
       padding: 0;
-      font-family: system-ui, -apple-system, BlinkMacSystemFont, "SF Pro Text",
-        "Segoe UI", sans-serif;
+      font-family: system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
     }
 
     body {
-      background: radial-gradient(circle at top, #1e293b 0, #020617 40%, #000 100%);
+      background: radial-gradient(circle at top, #fdf7ee 0, #f7f1e7 50%, #f0e3d4 100%);
       color: var(--text-main);
       padding: 24px;
     }
 
     .app {
-      max-width: 1200px;
+      max-width: 1100px;
       margin: 0 auto;
     }
 
@@ -46,13 +45,12 @@
       align-items: center;
       justify-content: space-between;
       gap: 16px;
-      margin-bottom: 24px;
+      margin-bottom: 16px;
       padding: 16px 20px;
-      border-radius: 999px;
-      background: linear-gradient(90deg, rgba(56, 189, 248, 0.18), rgba(168, 85, 247, 0.22));
-      border: 1px solid rgba(148, 163, 184, 0.4);
-      backdrop-filter: blur(18px);
-      box-shadow: 0 14px 35px rgba(15, 23, 42, 0.75);
+      border-radius: 18px;
+      background: linear-gradient(135deg, #f8ede0, #f3dfcd);
+      border: 1px solid #e4cfb9;
+      box-shadow: 0 10px 24px rgba(121, 85, 52, 0.25);
     }
 
     .logo-row {
@@ -65,12 +63,12 @@
       width: 54px;
       height: 54px;
       border-radius: 999px;
-      background: radial-gradient(circle at 30% 20%, #e0f2fe 0, #0369a1 40%, #020617 100%);
+      background: radial-gradient(circle at 30% 20%, #fffaf4 0, #e2c09a 45%, #b47c4b 80%);
       display: flex;
       align-items: center;
       justify-content: center;
-      box-shadow: 0 10px 25px rgba(15, 23, 42, 0.9);
-      border: 2px solid rgba(248, 250, 252, 0.7);
+      box-shadow: 0 10px 22px rgba(121, 85, 52, 0.4);
+      border: 2px solid #fff7ef;
     }
 
     .logo-circle span {
@@ -84,25 +82,27 @@
     }
 
     .app-title h1 {
-      font-size: 1.5rem;
+      font-size: 1.6rem;
       font-weight: 700;
       letter-spacing: 0.04em;
+      color: #4a3725;
     }
 
     .app-title p {
       font-size: 0.9rem;
-      color: #e5e7eb;
+      color: #8a6f56;
     }
 
     .header-points {
-      padding: 6px 12px;
+      padding: 8px 12px;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.6);
-      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: rgba(255, 255, 255, 0.7);
+      border: 1px solid #e4cfb9;
       display: flex;
       align-items: center;
       gap: 10px;
       font-size: 0.9rem;
+      color: #5f4632;
     }
 
     .header-points span:first-child {
@@ -110,69 +110,87 @@
     }
 
     .chip {
-      padding: 3px 9px;
+      padding: 4px 10px;
       border-radius: 999px;
       font-size: 0.75rem;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.5);
+      background: #f3e2cf;
+      border: 1px solid #e1cfbc;
+      color: #7b5e43;
     }
 
-    /* LAYOUT */
+    /* TABS / SLIDES */
 
-    .grid {
-      display: grid;
-      grid-template-columns: minmax(0, 1.1fr) minmax(0, 1.1fr) minmax(0, 1fr);
-      gap: 18px;
-    }
-
-    @media (max-width: 960px) {
-      .grid {
-        grid-template-columns: 1fr;
-      }
-
-      header {
-        border-radius: 18px;
-        flex-direction: column;
-        align-items: flex-start;
-      }
-    }
-
-    .column {
+    .tabs {
       display: flex;
-      flex-direction: column;
-      gap: 18px;
+      gap: 8px;
+      margin-bottom: 16px;
+      background: #f2e4d4;
+      padding: 6px;
+      border-radius: 999px;
+      border: 1px solid #e2cdb9;
     }
+
+    .tab {
+      flex: 1;
+      border-radius: 999px;
+      border: none;
+      background: transparent;
+      padding: 8px 10px;
+      font-size: 0.85rem;
+      font-weight: 600;
+      color: #8a6f56;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 6px;
+      transition: background 0.15s ease, box-shadow 0.15s ease, transform 0.08s ease;
+    }
+
+    .tab span.icon {
+      font-size: 1rem;
+    }
+
+    .tab.active {
+      background: #fffaf4;
+      color: #5b3d26;
+      box-shadow: 0 6px 14px rgba(156, 112, 70, 0.3);
+      transform: translateY(-1px);
+    }
+
+    .slides {
+      position: relative;
+    }
+
+    .slide {
+      display: none;
+      animation: fadeIn 0.18s ease-out;
+    }
+
+    .slide.active {
+      display: block;
+    }
+
+    @keyframes fadeIn {
+      from {
+        opacity: 0;
+        transform: translateY(4px);
+      }
+      to {
+        opacity: 1;
+        transform: translateY(0);
+      }
+    }
+
+    /* CARDS */
 
     .card {
-      background: radial-gradient(circle at top left, rgba(56, 189, 248, 0.12), transparent 55%),
-        radial-gradient(circle at bottom right, rgba(168, 85, 247, 0.16), transparent 55%),
-        var(--card-bg);
+      background: var(--card-bg);
       border-radius: var(--radius-lg);
-      padding: 16px 18px;
+      padding: 18px 20px;
       border: 1px solid var(--border-subtle);
       box-shadow: var(--shadow-soft);
-      position: relative;
-      overflow: hidden;
-    }
-
-    .card::before {
-      content: "";
-      position: absolute;
-      inset: 0;
-      background: linear-gradient(
-        135deg,
-        rgba(148, 163, 184, 0.22),
-        transparent 20%,
-        transparent 80%,
-        rgba(148, 163, 184, 0.15)
-      );
-      opacity: 0.2;
-      pointer-events: none;
-    }
-
-    .card > * {
-      position: relative;
-      z-index: 1;
+      margin-bottom: 14px;
     }
 
     .card-header {
@@ -189,6 +207,7 @@
       gap: 8px;
       font-weight: 600;
       font-size: 1rem;
+      color: #5c4331;
     }
 
     .card-title span.icon {
@@ -198,22 +217,20 @@
     .card-subtitle {
       font-size: 0.8rem;
       color: var(--text-soft);
-      margin-bottom: 10px;
+      margin-bottom: 8px;
     }
 
     .tag {
       padding: 3px 9px;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: #f8ecde;
+      border: 1px solid #e2cdb9;
       font-size: 0.75rem;
-      color: var(--text-soft);
+      color: #7c6048;
       display: inline-flex;
       align-items: center;
       gap: 4px;
     }
-
-    /* FORMS / INPUTS / BUTTONS */
 
     label {
       display: block;
@@ -230,8 +247,8 @@
       padding: 8px 10px;
       margin-bottom: 8px;
       border-radius: 999px;
-      border: 1px solid rgba(55, 65, 81, 0.9);
-      background: rgba(15, 23, 42, 0.9);
+      border: 1px solid #ddc7b3;
+      background: #fdf8f1;
       color: var(--text-main);
       font-size: 0.9rem;
       outline: none;
@@ -248,8 +265,8 @@
     textarea:focus,
     select:focus {
       border-color: var(--accent);
-      box-shadow: 0 0 0 1px rgba(56, 189, 248, 0.45);
-      background: #020617;
+      box-shadow: 0 0 0 1px rgba(201, 136, 91, 0.4);
+      background: #fffaf3;
     }
 
     button {
@@ -275,21 +292,21 @@
     }
 
     .btn-primary {
-      background: linear-gradient(135deg, var(--accent), var(--accent-2));
-      color: #0b1120;
-      box-shadow: 0 7px 16px rgba(56, 189, 248, 0.4);
+      background: linear-gradient(135deg, #d69b6b, #b4774c);
+      color: #fff8ef;
+      box-shadow: 0 7px 16px rgba(158, 106, 63, 0.5);
     }
 
     .btn-secondary {
-      background: rgba(15, 23, 42, 0.9);
-      color: var(--text-main);
-      border: 1px solid rgba(148, 163, 184, 0.6);
+      background: #f5e5d4;
+      color: #5b412d;
+      border: 1px solid #ddc5ae;
     }
 
     .btn-ghost {
       background: transparent;
       color: var(--text-soft);
-      border: 1px dashed rgba(148, 163, 184, 0.7);
+      border: 1px dashed #d5c3b1;
     }
 
     .btn-small {
@@ -297,20 +314,13 @@
       font-size: 0.78rem;
     }
 
-    .btn-shop {
-      width: 100%;
-      justify-content: space-between;
-      margin-right: 0;
-      margin-top: 6px;
-    }
-
     .pill {
       border-radius: 999px;
       padding: 2px 8px;
-      font-size: 0.7rem;
-      border: 1px solid rgba(148, 163, 184, 0.7);
-      background: rgba(15, 23, 42, 0.85);
-      color: var(--text-soft);
+      font-size: 0.75rem;
+      border: 1px solid #e2cdb9;
+      background: #fbf2e7;
+      color: #7c6048;
     }
 
     /* TIMER */
@@ -320,6 +330,7 @@
       font-weight: 700;
       letter-spacing: 0.18em;
       margin: 8px 0;
+      color: #5c4331;
     }
 
     .timer-controls {
@@ -347,42 +358,35 @@
 
     .points-row strong {
       font-size: 1.1rem;
+      color: #5c4331;
     }
 
     .hint {
-      font-size: 0.75rem;
+      font-size: 0.8rem;
       color: var(--text-soft);
       margin-top: 4px;
     }
 
-    /* OWL PROFILE & PROGRESS */
-
-    .owl-header-row {
-      display: flex;
-      align-items: center;
-      justify-content: space-between;
-      gap: 10px;
-      margin-bottom: 6px;
-    }
+    /* OWL PROFILE & SHOP */
 
     .owl-figure {
       display: flex;
       align-items: center;
       gap: 12px;
-      margin: 6px 0 8px 0;
+      margin: 6px 0 10px 0;
     }
 
     .owl-icon {
-      width: 70px;
-      height: 70px;
+      width: 72px;
+      height: 72px;
       border-radius: 24px;
-      background: radial-gradient(circle at 30% 20%, #e0f2fe 0, #0369a1 40%, #020617 100%);
+      background: radial-gradient(circle at 30% 20%, #fffaf6 0, #e3c199 45%, #bf8450 85%);
       display: flex;
       align-items: center;
       justify-content: center;
-      font-size: 2.4rem;
-      box-shadow: 0 12px 26px rgba(15, 23, 42, 0.95);
-      border: 2px solid rgba(248, 250, 252, 0.7);
+      font-size: 2.5rem;
+      box-shadow: 0 12px 26px rgba(121, 85, 52, 0.45);
+      border: 2px solid #fff5ea;
     }
 
     .owl-meta {
@@ -394,6 +398,7 @@
     .owl-level {
       font-size: 0.95rem;
       font-weight: 600;
+      color: #5c4331;
     }
 
     .owl-xp {
@@ -405,8 +410,8 @@
       width: 100%;
       height: 8px;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(51, 65, 85, 0.8);
+      background: #f5e6d4;
+      border: 1px solid #e0ccb8;
       overflow: hidden;
       margin-top: 5px;
     }
@@ -414,8 +419,8 @@
     .progress-bar {
       height: 100%;
       width: 0%;
-      background: linear-gradient(90deg, var(--accent), var(--accent-2));
-      box-shadow: 0 0 12px rgba(56, 189, 248, 0.7);
+      background: linear-gradient(90deg, #d69b6b, #b4774c);
+      box-shadow: 0 0 12px rgba(187, 123, 68, 0.6);
       transition: width 0.25s ease;
     }
 
@@ -428,24 +433,23 @@
 
     .accessory-tag {
       font-size: 0.75rem;
-      padding: 2px 7px;
+      padding: 3px 8px;
       border-radius: 999px;
-      background: rgba(15, 23, 42, 0.9);
-      border: 1px solid rgba(148, 163, 184, 0.7);
+      background: #f7ebdd;
+      border: 1px solid #e1cebb;
       display: inline-flex;
       align-items: center;
       gap: 4px;
+      color: #6a5038;
     }
-
-    /* SHOP */
 
     .shop-list {
       margin-top: 4px;
     }
 
     .shop-item {
-      padding: 6px 0;
-      border-bottom: 1px dashed rgba(51, 65, 85, 0.9);
+      padding: 7px 0;
+      border-bottom: 1px dashed #e0ccb8;
     }
 
     .shop-item:last-child {
@@ -453,10 +457,11 @@
     }
 
     .shop-label {
-      font-size: 0.87rem;
+      font-size: 0.88rem;
       display: flex;
       flex-direction: column;
       gap: 2px;
+      color: #5b432f;
     }
 
     .shop-meta-row {
@@ -469,14 +474,14 @@
 
     .shop-cost {
       font-size: 0.8rem;
-      color: var(--accent);
+      color: var(--accent-2);
       display: inline-flex;
       align-items: center;
       gap: 4px;
     }
 
     .shop-status {
-      font-size: 0.75rem;
+      font-size: 0.78rem;
       color: var(--text-soft);
     }
 
@@ -486,20 +491,28 @@
 
     .shop-status.equipped {
       color: var(--accent-2);
+      font-weight: 600;
+    }
+
+    .btn-shop {
+      width: 100%;
+      justify-content: space-between;
+      margin-right: 0;
+      margin-top: 6px;
     }
 
     /* TIPS */
 
     .tips-list {
       list-style: none;
-      font-size: 0.88rem;
+      font-size: 0.9rem;
       color: var(--text-soft);
       margin-top: 4px;
     }
 
     .tips-list li {
-      margin-bottom: 6px;
-      padding-left: 16px;
+      margin-bottom: 8px;
+      padding-left: 18px;
       position: relative;
     }
 
@@ -523,12 +536,12 @@
     }
 
     .quiz-preview {
-      max-height: 110px;
+      max-height: 120px;
       overflow-y: auto;
       padding: 6px 10px;
       border-radius: 12px;
-      background: rgba(15, 23, 42, 0.85);
-      border: 1px dashed rgba(51, 65, 85, 0.9);
+      background: #f9f1e7;
+      border: 1px dashed #e0ccb8;
       font-size: 0.8rem;
       color: var(--text-soft);
     }
@@ -540,13 +553,14 @@
     .quiz-runner {
       margin-top: 10px;
       padding-top: 8px;
-      border-top: 1px solid rgba(31, 41, 55, 0.9);
+      border-top: 1px solid #ead6c3;
     }
 
     .quiz-question {
       font-size: 0.95rem;
       font-weight: 600;
       margin-bottom: 6px;
+      color: #5c4331;
     }
 
     .quiz-options {
@@ -573,14 +587,31 @@
 
     footer {
       text-align: center;
-      margin-top: 22px;
+      margin-top: 18px;
       font-size: 0.78rem;
       color: var(--text-soft);
+    }
+
+    @media (max-width: 720px) {
+      header {
+        flex-direction: column;
+        align-items: flex-start;
+        border-radius: 18px;
+      }
+
+      .tabs {
+        flex-wrap: wrap;
+      }
+
+      .tab {
+        flex: 1 1 calc(50% - 8px);
+      }
     }
   </style>
 </head>
 <body>
   <div class="app">
+    <!-- HEADER -->
     <header>
       <div class="logo-row">
         <div class="logo-circle">
@@ -588,7 +619,7 @@
         </div>
         <div class="app-title">
           <h1>Study Buddy</h1>
-          <p>Your math study partner — focus, level up your owl, and earn rewards.</p>
+          <p>Your cozy math study app – focus, earn points, level up your owl.</p>
         </div>
       </div>
       <div class="header-points">
@@ -598,19 +629,36 @@
       </div>
     </header>
 
-    <div class="grid">
-      <!-- LEFT COLUMN: TIMER + TIPS -->
-      <div class="column">
-        <section class="card">
+    <!-- TABS -->
+    <nav class="tabs">
+      <button class="tab active" data-target="slide-timer">
+        <span class="icon">⏱</span><span>Timer</span>
+      </button>
+      <button class="tab" data-target="slide-owl">
+        <span class="icon">🦉</span><span>Owl & Shop</span>
+      </button>
+      <button class="tab" data-target="slide-quiz">
+        <span class="icon">📝</span><span>Quiz Maker</span>
+      </button>
+      <button class="tab" data-target="slide-help">
+        <span class="icon">📐</span><span>Study Help</span>
+      </button>
+    </nav>
+
+    <!-- SLIDES -->
+    <main class="slides">
+      <!-- SLIDE 1: TIMER -->
+      <section id="slide-timer" class="slide active">
+        <div class="card">
           <div class="card-header">
             <div>
               <div class="card-title">
                 <span class="icon">⏱</span>
                 <span>Study Timer</span>
               </div>
-              <p class="card-subtitle">Pick a focus block, press start, and earn points when you finish.</p>
+              <p class="card-subtitle">Set a focus block and earn points when you finish.</p>
             </div>
-            <span class="tag">10 points / 10 min</span>
+            <span class="tag">10 pts / 10 min</span>
           </div>
 
           <label for="minutesInput">Study minutes</label>
@@ -625,55 +673,90 @@
           </div>
 
           <div class="timer-status" id="timerStatus">
-            Choose a time and hit <strong>Start Session</strong>.
+            Choose a time and tap <strong>Start Session</strong>.
           </div>
 
           <div class="points-row">
             <div>
               Points this session (estimate): <strong id="sessionPointsPreview">20</strong>
             </div>
-            <div class="pill">10 pts / 10 minutes (rounded)</div>
+            <div class="pill">Points are added when the timer ends.</div>
           </div>
           <p class="hint">
-            Stay focused until the timer ends to collect points automatically.
+            Tip: put your phone away until the timer finishes, then reward yourself with points and owl upgrades.
           </p>
-        </section>
+        </div>
+      </section>
 
-        <section class="card">
+      <!-- SLIDE 2: OWL & SHOP -->
+      <section id="slide-owl" class="slide">
+        <div class="card">
           <div class="card-header">
             <div>
               <div class="card-title">
-                <span class="icon">📐</span>
-                <span>Math Study Help</span>
+                <span class="icon">🦉</span>
+                <span>Your Study Buddy Owl</span>
               </div>
-              <p class="card-subtitle">Use these methods while your timer runs for better results.</p>
+              <p class="card-subtitle">Level up and equip accessories using your points.</p>
             </div>
-            <span class="tag">Tips • Techniques</span>
+            <span class="tag" id="pointsTag">Points: 0</span>
           </div>
 
-          <ul class="tips-list">
-            <li><strong>Example → Copy → Create:</strong> Copy a solved example, then change the numbers and solve your own version.</li>
-            <li><strong>Explain to your owl:</strong> Say out loud each step as if you are teaching your Study Buddy owl.</li>
-            <li><strong>3 easy • 2 medium • 1 hard:</strong> In every block, mix difficulty so your brain stays awake.</li>
-            <li><strong>Formula sprint:</strong> At the start, write all formulas you need from memory, then check them.</li>
-            <li><strong>Why, not just what:</strong> For each step, ask “why can I do this?” (e.g. “because I added the same to both sides”).</li>
-            <li><strong>Math diary:</strong> At the end of the session, write one thing that finally made sense today.</li>
-          </ul>
-        </section>
-      </div>
+          <div class="owl-figure">
+            <div class="owl-icon" id="owlIcon">🦉🎓</div>
+            <div class="owl-meta">
+              <div class="owl-level" id="owlLevelText">Level 1 · New Student</div>
+              <div class="owl-xp" id="owlXpText">0 / 50 points to next level</div>
+            </div>
+          </div>
 
-      <!-- MIDDLE COLUMN: QUIZ MAKER -->
-      <div class="column">
-        <section class="card">
+          <div class="progress-shell">
+            <div class="progress-bar" id="levelProgress"></div>
+          </div>
+
+          <div class="accessory-tags" id="equippedAccessories">
+            <!-- Filled by JS -->
+          </div>
+
+          <p class="hint">
+            Keep studying with the timer to earn points, then visit the shop to buy glasses, capes, sparkles, and more.
+          </p>
+        </div>
+
+        <div class="card">
+          <div class="card-header">
+            <div>
+              <div class="card-title">
+                <span class="icon">🛒</span>
+                <span>Owl Accessory Shop</span>
+              </div>
+              <p class="card-subtitle">Spend your points on cozy upgrades and style.</p>
+            </div>
+            <span class="tag">Cosmetics only · No pressure</span>
+          </div>
+
+          <div class="shop-list" id="shopList">
+            <!-- Shop items from JS -->
+          </div>
+
+          <p class="hint">
+            Idea: set a goal like “When I reach 100 points, I’ll buy the Sparkle Aura”.
+          </p>
+        </div>
+      </section>
+
+      <!-- SLIDE 3: QUIZ MAKER -->
+      <section id="slide-quiz" class="slide">
+        <div class="card">
           <div class="card-header">
             <div>
               <div class="card-title">
                 <span class="icon">📝</span>
                 <span>Quiz Maker</span>
               </div>
-              <p class="card-subtitle">Create your own math questions and test yourself.</p>
+              <p class="card-subtitle">Turn your math problems into a custom quiz.</p>
             </div>
-            <span class="tag">Custom practice</span>
+            <span class="tag">Self-test</span>
           </div>
 
           <div class="quiz-builder">
@@ -728,82 +811,64 @@
           </div>
 
           <p class="hint" style="margin-top:6px;">
-            Idea: turn your homework problems into quiz questions and see what you remember tomorrow.
+            Use your class notes: write today’s problems as quiz questions and try again tomorrow.
           </p>
-        </section>
-      </div>
+        </div>
+      </section>
 
-      <!-- RIGHT COLUMN: OWL + SHOP -->
-      <div class="column">
-        <section class="card">
+      <!-- SLIDE 4: STUDY HELP -->
+      <section id="slide-help" class="slide">
+        <div class="card">
           <div class="card-header">
             <div>
               <div class="card-title">
-                <span class="icon">🦉</span>
-                <span>Your Study Buddy</span>
+                <span class="icon">📐</span>
+                <span>Math Study Help Methods</span>
               </div>
-              <p class="card-subtitle">Level up your owl and equip cool accessories.</p>
+              <p class="card-subtitle">Use these while the timer runs to get more from each session.</p>
             </div>
-            <span class="tag" id="pointsTag">Points: 0</span>
+            <span class="tag">Ideas & routines</span>
           </div>
 
-          <div class="owl-header-row">
-            <div>
-              <div class="owl-figure">
-                <div class="owl-icon" id="owlIcon">🦉🎓</div>
-                <div class="owl-meta">
-                  <div class="owl-level" id="owlLevelText">Level 1 · New Student</div>
-                  <div class="owl-xp" id="owlXpText">0 / 50 points to next level</div>
-                </div>
-              </div>
-            </div>
-          </div>
-
-          <div class="progress-shell">
-            <div class="progress-bar" id="levelProgress"></div>
-          </div>
-
-          <div class="accessory-tags" id="equippedAccessories">
-            <!-- Filled by JS -->
-          </div>
-
-          <p class="hint">
-            Earn points with the timer, then visit the shop to buy accessories for your owl.
-          </p>
-        </section>
-
-        <section class="card">
-          <div class="card-header">
-            <div>
-              <div class="card-title">
-                <span class="icon">🛒</span>
-                <span>Owl Accessory Shop</span>
-              </div>
-              <p class="card-subtitle">Spend your points on upgrades and style.</p>
-            </div>
-            <span class="tag">Cosmetics only · Keep your points safe</span>
-          </div>
-
-          <div class="shop-list" id="shopList">
-            <!-- Shop items from JS -->
-          </div>
-
-          <p class="hint">
-            Tip: Save up for a big item, or collect lots of smaller ones and swap styles whenever you like.
-          </p>
-        </section>
-      </div>
-    </div>
+          <ul class="tips-list">
+            <li><strong>Example → Practice → Check:</strong> Copy one example from the book, hide it, and do a similar problem yourself. Then compare step by step.</li>
+            <li><strong>Explain to your owl:</strong> For each step, say out loud what you’re doing and why. Imagine your Study Buddy owl is your student.</li>
+            <li><strong>3–2–1 mix:</strong> Do 3 easy problems, 2 medium, and 1 hard in every timer session so you feel progress and still stretch yourself.</li>
+            <li><strong>Error detective:</strong> When you miss a question, circle where it went wrong and write one sentence: “Next time I’ll remember to…”.</li>
+            <li><strong>Formula warm-up:</strong> In the first 3 minutes, write all formulas you need from memory (area, volume, equations). Then check and fix them.</li>
+            <li><strong>Connect topics:</strong> After finishing, ask: “How is this like something I learned before?” (fractions vs decimals, area vs perimeter, etc.).</li>
+            <li><strong>End-of-session note:</strong> On a small paper or notebook, write one thing that finally made sense today. That’s your tiny math win.</li>
+          </ul>
+        </div>
+      </section>
+    </main>
 
     <footer>
-      Study Buddy · Practice a little every day · Your owl believes in you 🦉🎓
+      Study Buddy · Cozy math practice · Your owl believes in you 🦉🎓
     </footer>
   </div>
 
   <script>
-    /* ----------------------
-       GLOBAL STATE
-    ---------------------- */
+    /* ---------- SIMPLE HELPERS ---------- */
+    const $ = (id) => document.getElementById(id);
+
+    /* ---------- TABS / SLIDES ---------- */
+    const tabs = document.querySelectorAll(".tab");
+    const slides = document.querySelectorAll(".slide");
+
+    tabs.forEach((tab) => {
+      tab.addEventListener("click", () => {
+        const targetId = tab.dataset.target;
+
+        tabs.forEach((t) => t.classList.remove("active"));
+        slides.forEach((s) => s.classList.remove("active"));
+
+        tab.classList.add("active");
+        document.getElementById(targetId).classList.add("active");
+      });
+    });
+
+    /* ---------- GLOBAL STATE ---------- */
     let totalPoints = 0;
     let timerInterval = null;
     let remainingSeconds = 0;
@@ -836,7 +901,7 @@
         cost: 90,
         owned: false,
         equipped: false,
-        description: "Because math magic is real."
+        description: "A magical glow for focus mode."
       },
       {
         id: "star",
@@ -854,11 +919,7 @@
     let quizScore = 0;
     let quizActive = false;
 
-    /* ----------------------
-       DOM HELPERS
-    ---------------------- */
-    const $ = (id) => document.getElementById(id);
-
+    /* ---------- DOM ELEMENTS ---------- */
     const minutesInput = $("minutesInput");
     const timerDisplay = $("timerDisplay");
     const timerStatus = $("timerStatus");
@@ -893,9 +954,7 @@
     const startQuizBtn = $("startQuizBtn");
     const nextQuestionBtn = $("nextQuestionBtn");
 
-    /* ----------------------
-       TIMER LOGIC
-    ---------------------- */
+    /* ---------- TIMER LOGIC ---------- */
     function formatTime(seconds) {
       const m = Math.floor(seconds / 60);
       const s = seconds % 60;
@@ -925,7 +984,7 @@
       currentSessionMinutes = minutes;
       remainingSeconds = minutes * 60;
       updateTimerDisplay();
-      timerStatus.textContent = "Studying... stay focused! 📚";
+      timerStatus.textContent = "Studying... stay focused!";
       isRunning = true;
 
       startTimerBtn.textContent = "Running...";
@@ -957,7 +1016,7 @@
       startTimerBtn.textContent = "Resume";
       startTimerBtn.disabled = false;
       pauseTimerBtn.disabled = true;
-      timerStatus.textContent = "Paused. Take a short break, then resume.";
+      timerStatus.textContent = "Paused. Take a breath and then resume.";
     }
 
     function resetTimer() {
@@ -994,9 +1053,7 @@
     pauseTimerBtn.addEventListener("click", pauseTimer);
     resetTimerBtn.addEventListener("click", resetTimer);
 
-    /* ----------------------
-       POINTS + LEVELS + OWL
-    ---------------------- */
+    /* ---------- POINTS + LEVELS + OWL ---------- */
     function getLevelInfo(points) {
       if (points >= 250) {
         return {
@@ -1078,15 +1135,12 @@
       updateEquippedAccessoryTags();
     }
 
-    /* ----------------------
-       SHOP LOGIC
-    ---------------------- */
+    /* ---------- SHOP LOGIC ---------- */
     function toggleAccessory(id) {
       const item = accessories.find((a) => a.id === id);
       if (!item) return;
 
       if (!item.owned) {
-        // Try to buy
         if (totalPoints < item.cost) {
           alert("Not enough points for this accessory yet. Keep studying!");
           return;
@@ -1098,7 +1152,6 @@
         item.owned = true;
         item.equipped = true;
       } else {
-        // Already owned -> toggle equipped
         item.equipped = !item.equipped;
       }
 
@@ -1154,9 +1207,7 @@
       });
     }
 
-    /* ----------------------
-       QUIZ MAKER LOGIC
-    ---------------------- */
+    /* ---------- QUIZ LOGIC ---------- */
     function refreshQuizPreview() {
       if (quizQuestions.length === 0) {
         quizPreview.textContent =
@@ -1197,96 +1248,3 @@
       optB.value = "";
       optC.value = "";
       optD.value = "";
-      correctOptionSelect.value = "A";
-
-      refreshQuizPreview();
-    }
-
-    function clearQuestions() {
-      if (!confirm("Clear all quiz questions?")) return;
-      quizQuestions.length = 0;
-      quizRunner.style.display = "none";
-      quizResult.textContent = "";
-      quizActive = false;
-      refreshQuizPreview();
-    }
-
-    function startQuiz() {
-      if (quizQuestions.length === 0) {
-        alert("Add at least one question before starting the quiz.");
-        return;
-      }
-      quizRunner.style.display = "block";
-      quizIndex = 0;
-      quizScore = 0;
-      quizActive = true;
-      quizResult.textContent = "";
-      showQuizQuestion();
-    }
-
-    function showQuizQuestion() {
-      const q = quizQuestions[quizIndex];
-      currentQuizQuestion.textContent = `${quizIndex + 1}. ${q.question}`;
-      quizOptionsList.innerHTML = "";
-
-      ["A", "B", "C", "D"].forEach((letter) => {
-        const li = document.createElement("li");
-        const btn = document.createElement("button");
-        btn.className = "btn-secondary btn-small";
-        btn.textContent = `${letter}: ${q.options[letter]}`;
-        btn.addEventListener("click", () => selectAnswer(letter));
-        li.appendChild(btn);
-        quizOptionsList.appendChild(li);
-      });
-
-      quizResult.textContent = "";
-      quizResult.className = "quiz-result";
-    }
-
-    function selectAnswer(choice) {
-      const q = quizQuestions[quizIndex];
-      if (choice === q.correct) {
-        quizResult.textContent = "✅ Correct! Nice job.";
-        quizResult.className = "quiz-result correct";
-        quizScore++;
-      } else {
-        quizResult.textContent = `❌ Not quite. Correct answer: ${q.correct}`;
-        quizResult.className = "quiz-result wrong";
-      }
-    }
-
-    function nextQuestion() {
-      if (!quizActive) return;
-      quizIndex++;
-      if (quizIndex >= quizQuestions.length) {
-        quizActive = false;
-        quizOptionsList.innerHTML = "";
-        currentQuizQuestion.textContent = "Quiz finished!";
-        quizResult.className = "quiz-result correct";
-        quizResult.textContent = `You scored ${quizScore} out of ${quizQuestions.length}.`;
-      } else {
-        showQuizQuestion();
-      }
-    }
-
-    addQuestionBtn.addEventListener("click", addQuestion);
-    clearQuestionsBtn.addEventListener("click", clearQuestions);
-    startQuizBtn.addEventListener("click", startQuiz);
-    nextQuestionBtn.addEventListener("click", nextQuestion);
-
-    /* ----------------------
-       INITIAL SETUP
-    ---------------------- */
-    function init() {
-      calculateSessionPointsEstimate();
-      const minutes = parseInt(minutesInput.value, 10) || 25;
-      remainingSeconds = minutes * 60;
-      updateTimerDisplay();
-      renderShop();
-      updateEquippedAccessoryTags();
-    }
-
-    init();
-  </script>
-</body>
-</html>
